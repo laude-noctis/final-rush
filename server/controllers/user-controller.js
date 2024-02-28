@@ -21,6 +21,7 @@ module.exports = {
     const user = await User.create(body);
 
     if (!user) {
+      console.error(err)
       return res.status(400).json({ message: 'Something is wrong!' });
     }
     const token = signToken(user);
