@@ -25,9 +25,11 @@ const resolvers = {
             return { token, user }
         },
         addUser: async (parent, { username, email, password }) => {
+            console.log(username, email, password)
             const newUser = await User.create({ username, email, password });
+            console.log(newUser)
             const token = signToken(newUser)
-            return { token, newUser }
+            return { token, user: newUser }
         },
         saveBook: async (parent, { input }, context) => {
             const saveBook = await User.findOneAndUpdate(
@@ -47,3 +49,5 @@ const resolvers = {
         } 
     }
 }
+
+module.exports = resolvers
