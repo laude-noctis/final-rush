@@ -34,6 +34,7 @@ mutation SAVE_BOOK($book: BookInput!) {
         image
         link
     }
+}
 `
 
 export const REMOVE_BOOK = gql`
