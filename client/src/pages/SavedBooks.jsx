@@ -15,13 +15,9 @@ import { GET_ME } from '../utils/queries'
 import { REMOVE_BOOK } from '../utils/mutations'
 
 const SavedBooks = () => {
-  const { loading, data } = useQuery(GET_ME, {
-    variables: { user: user._id }
-  });
-
-  console.log(data)
-
-  const userData = data.user;
+  const { loading, data } = useQuery(GET_ME);
+  console.log("DATA:", data)
+  const userData = data ? data.user : null
 
   const [removeBook] = useMutation(REMOVE_BOOK)
 
