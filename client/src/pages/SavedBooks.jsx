@@ -7,7 +7,7 @@ import {
   Col
 } from 'react-bootstrap';
 
-// import { getMe, deleteBook } from '../utils/API';
+import { getMe, deleteBook } from '../utils/API';
 import Auth from '../utils/auth';
 import { removeBookId } from '../utils/localStorage';
 
@@ -17,8 +17,6 @@ import { REMOVE_BOOK } from '../utils/mutations'
 
 const SavedBooks = () => {
   const { loading, data } = useQuery(GET_ME);
-
-  console.log("DATA:", data)
 
   const [userData, setUserData] = useState();
 
@@ -37,7 +35,7 @@ const SavedBooks = () => {
 
     try {
       const { data } = await removeBook({
-        variables: { bookId: bookId}
+        variables: { bookId: userData.savedBooks.bookId }
       });
       // upon success, remove book's id from localStorage
       removeBookId(bookId);
@@ -46,7 +44,6 @@ const SavedBooks = () => {
     }
   };
 
-  console.log(userData)
   // if data isn't here yet, say so
   if (!userData) {
     return <h2>LOADING...</h2>;
