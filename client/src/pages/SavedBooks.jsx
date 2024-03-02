@@ -45,8 +45,6 @@ const SavedBooks = () => {
         variables: { bookId: bookToDelete.bookId },
       });
       
-      localStorage.removeItem(bookId)
-      
       const updatedSavedBooks = userData.savedBooks.filter(book => book.bookId !== bookId);
       setUserData({ ...userData, savedBooks: updatedSavedBooks });
 
@@ -61,6 +59,7 @@ const SavedBooks = () => {
   if (!userData) {
     return <h2>LOADING...</h2>;
   }
+
   return (
     <>
       <div fluid className="text-light bg-dark p-5">
