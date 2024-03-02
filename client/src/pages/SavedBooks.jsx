@@ -42,12 +42,14 @@ const SavedBooks = () => {
       }
 
       const { data } = await removeBook({
-        variables: { bookId: bookToDelete.bookId }
+        variables: { bookId: bookToDelete.bookId },
       });
-
+      
+      localStorage.removeItem(bookId)
+      
       const updatedSavedBooks = userData.savedBooks.filter(book => book.bookId !== bookId);
       setUserData({ ...userData, savedBooks: updatedSavedBooks });
-      
+
       // upon success, remove book's id from localStorage
       removeBookId(bookId);
     } catch (err) {
