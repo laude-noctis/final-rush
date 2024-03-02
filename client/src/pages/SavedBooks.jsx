@@ -34,9 +34,20 @@ const SavedBooks = () => {
     }
 
     try {
+      const bookToDelete = userData.savedBooks.find(book => book.bookId === bookId);
+
+      if (!bookToDelete) {
+        console.error("Book not found in saved books.");
+        return;
+      }
+
       const { data } = await removeBook({
-        variables: { bookId: userData.savedBooks.bookId }
+        variables: { bookId: bookToDelete.bookId }
       });
+
+      const updatedSavedBooks = userData.savedBooks.filter(book => book.bookId !== bookId);
+      setUserData({ ...userData, savedBooks: updatedSavedBooks });
+      
       // upon success, remove book's id from localStorage
       removeBookId(bookId);
     } catch (err) {
