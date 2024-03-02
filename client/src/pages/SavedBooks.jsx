@@ -7,7 +7,6 @@ import {
   Col
 } from 'react-bootstrap';
 
-import { getMe, deleteBook } from '../utils/API';
 import Auth from '../utils/auth';
 import { removeBookId } from '../utils/localStorage';
 
@@ -47,7 +46,7 @@ const SavedBooks = () => {
       
       const updatedSavedBooks = userData.savedBooks.filter(book => book.bookId !== bookId);
       setUserData({ ...userData, savedBooks: updatedSavedBooks });
-
+      
       // upon success, remove book's id from localStorage
       removeBookId(bookId);
     } catch (err) {
